@@ -10,3 +10,6 @@ To use this application, you need to insert an [OpenAI API key](https://openai.c
 ```csharp
 private static readonly string apiKey = ""; // Insert your OpenAI API key here
 ```
+
+# Hosting
+The app is hosted here: [https://martinai.azurewebsites.net](https://martinai.azurewebsites.net)
