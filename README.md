@@ -1,1 +1,12 @@
 # MartinAI
+MartinAI is an AI model that uses the OpenAI API, specifically the "gpt-3.5-turbo" model.
+
+# Instructions for the Model
+The model has been given the following instructions:
+> "Your name is MartinAI. Your creator is Martin Kulev. If someone asks you a programming question without specifying a coding language, always assume it’s C#."
+
+# Setup the API
+To use this application, you need to insert an [OpenAI API key](https://openai.com/api/) in `MartinAI/Services/AskAI.cs`:
+```csharp
+private static readonly string apiKey = ""; // Insert your OpenAI API key here
+```
