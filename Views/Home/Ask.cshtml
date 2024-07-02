@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MartinAI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        textarea:focus, input:focus {
+            outline: none;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .aside-container {
+            width: 15%;
+            min-width: 15%;
+            background-color: #171717;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            margin-top: 10px;
+            font-size: 25px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .github-ref-container {
+            display: flex;
+            flex-direction: row;
+            font-size: 20px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .github-ref {
+            text-decoration: underline;
+            margin: 2px;
+            color: #ADD8E6;
+        }
+
+        .github-made-by {
+            color: #ffffff;
+            margin: 2px;
+        }
+
+        .github-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5px;
+            color: #ffffff;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .main-container {
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            background-color: #212121;
+            overflow: auto;
+            padding-right: 15%;
+            padding-left: 30%;
+            padding-top: 50px;
+            padding-bottom: 200px;
+        }
+
+        .prompt-container {
+            position: fixed;
+            bottom: 0;
+            left: 15%;
+            right: 0;
+            width: 85%;
+            background-color: #212121;
+        }
+
+        .prompt-subContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: auto;
+            height: 50px;
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-bottom: 20px;
+        }
+
+        .prompt-input {
+            width: 90%;
+            border-radius: 30px;
+            background-color: #2f2f2f;
+            resize: none;
+            color: #d3d3d3;
+            padding: 20px;
+            font-size: 14px;
+            border: none;
+        }
+
+        .prompt-button {
+            border-radius: 50%;
+            width: 5%;
+            color: #ffffff;
+            background-color: #2f2f2f;
+            cursor: pointer;
+            border: none;
+        }
+
+            .prompt-button:hover {
+                background-color: #262626;
+            }
+
+        .loader {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+        }
+
+            .loader i {
+                color: #d3d3d3;
+                font-size: 24px;
+            }
+
+        .question-bubble-container {
+            display: flex;
+            justify-content: right;
+            margin-bottom: 50px;
+        }
+
+        .question-bubble {
+            width: 50%;
+            background-color: #2f2f2f;
+            padding: 20px;
+            border-radius: 50px;
+            color: #d3d3d3;
+        }
+
+        .answer {
+            color: #d3d3d3;
+            line-height: 2;
+        }
+
+        .martinAI-label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <aside class="aside-container">
+        <section class="logo">• MartinAI •</section>
+        <article class="github-ref-container">
+            <p class="github-made-by">Made by: </p>
+            <p class="github-logo">
+                <i class="fa-brands fa-github"></i>
+            </p>
+            <a class="github-ref" href="https://github.com/MartinKulev">Martin Kulev</a>
+        </article>
+    </aside>
+    <main class="main-container">
+        @if (Model != null)
+        {
+            <section class="question-bubble-container">
+                <div class="question-bubble">@Model.Prompt</div>
+            </section>
+            <section class="answer">
+                <div class="martinAI-label">Martin AI:</div>
+                <div>@Model.Response</div>
+            </section>
+        }
+        <section class="prompt-container">
+            <form class="prompt-subContainer" asp-controller="Home" asp-action="Ask" id="askForm">
+                <input class="prompt-input" name="prompt" placeholder="Ask Martin AI...">
+                <button class="prompt-button" type="submit">↑</button>
+                <div class="loader" id="loader">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script>
+        document.getElementById('askForm').addEventListener('submit', function() {
+            document.getElementById('loader').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
