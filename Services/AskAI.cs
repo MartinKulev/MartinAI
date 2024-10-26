@@ -6,16 +6,21 @@ namespace MartinAI.Services
 {
     public class AskAI : IAskAI
     {
-        private static readonly string apiKey = ""; //Here, you have to insert an OPEN AI API key
-        private static readonly string apiUrl = "https://api.openai.com/v1/chat/completions";
+        private readonly string? _apiKey;
+        private readonly string? _apiUrl;
 
-        public AskAI() { }
+        public AskAI(IConfiguration configuration)
+        {
+            _apiKey = configuration.GetValue<string>("APIKeys:OpenAI") ?? configuration.GetValue<string>("APIKeys:OpenAI");
+            _apiUrl = configuration.GetValue<string>("APIUrl");
+
+        }
 
         public async Task<string> GetChatGPTResponse(string prompt)
         {
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
 
                 var requestBody = new
                 {
@@ -31,7 +36,7 @@ namespace MartinAI.Services
                 var jsonContent = JsonConvert.SerializeObject(requestBody);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync(apiUrl, content);
+                var response = await client.PostAsync(_apiUrl, content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
