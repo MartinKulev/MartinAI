@@ -1,5 +1,5 @@
 # About app
-MartinAI is an AI model that uses the OpenAI API, specifically the "gpt-3.5-turbo" model.
+MartinAI is an AI model that uses the OpenAI API, specifically the "gpt-4.1" model.
 
 # Instructions for the Model
 The model has been given the following instructions:

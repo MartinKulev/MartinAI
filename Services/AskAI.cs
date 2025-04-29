@@ -24,7 +24,7 @@ namespace MartinAI.Services
 
                 var requestBody = new
                 {
-                    model = "gpt-3.5-turbo",
+                    model = "gpt-4.1",
                     messages = new[]
                     {
                         new { role = "system", content = "Your name is MartinAI. Your creator is Martin Kulev. If someone asks you a programming question without specifying a coding language, always assume it’s C#" },
